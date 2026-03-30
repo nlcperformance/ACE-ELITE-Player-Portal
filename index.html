@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>ACE ELITE | Player Portal</title>
+    <title>ACE ELITE | Soviet Portal</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;600;700&family=Inter:wght@300;500;700;900&display=swap" rel="stylesheet">
@@ -23,11 +23,12 @@
                             border: '#27272a',
                             red: '#dc2626',
                             red_hover: '#b91c1c',
-                            text: '#e4e4e7',
+                            text: '#ffffff',
                             muted: '#a1a1aa',
-                            protein: '#dc2626', // Red
-                            carbs: '#f59e0b',   // Gold
-                            fats: '#3b82f6'     // Blue
+                            /* Soviet Macro Colors */
+                            protein: '#dc2626', // Brutal Red
+                            carbs: '#ffffff',   // Pure White
+                            fats: '#52525b'     // Iron Grey
                         }
                     }
                 }
@@ -35,14 +36,14 @@
         }
     </script>
     <style>
-        body { background-color: #09090b; color: #e4e4e7; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
-        .glass-card { background: rgba(18, 18, 18, 0.7); backdrop-filter: blur(12px); border: 1px solid #27272a; border-radius: 16px; }
+        body { background-color: #09090b; color: #ffffff; font-family: 'Inter', sans-serif; -webkit-tap-highlight-color: transparent; scroll-behavior: smooth; }
+        .glass-card { background: rgba(18, 18, 18, 0.8); backdrop-filter: blur(12px); border: 1px solid #27272a; border-radius: 16px; }
         .input-field { width: 100%; background: #18181b; border: 1px solid #27272a; color: white; padding: 14px 16px; border-radius: 8px; outline: none; transition: border-color 0.2s, box-shadow 0.2s; font-weight: 500; }
         .input-field:focus { border-color: #dc2626; box-shadow: 0 0 0 2px rgba(220, 38, 38, 0.2); }
         .btn-primary { background: #dc2626; color: white; padding: 16px 24px; border-radius: 8px; font-family: 'Teko', sans-serif; font-size: 26px; letter-spacing: 1px; text-transform: uppercase; width: 100%; transition: all 0.2s; text-align: center; display: inline-block; cursor: pointer; border: none; box-shadow: 0 4px 15px rgba(220, 38, 38, 0.3); }
         .btn-primary:hover { background: #b91c1c; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(220, 38, 38, 0.4); }
         .btn-primary:active { transform: translateY(0); }
-        .program-card { display: block; background: #18181b; border: 1px solid #27272a; border-radius: 12px; padding: 24px; transition: all 0.3s ease; text-decoration: none; color: inherit; position: relative; overflow: hidden; }
+        .program-card { display: block; background: #18181b; border: 1px solid #27272a; border-radius: 12px; padding: 32px; transition: all 0.3s ease; text-decoration: none; color: inherit; position: relative; overflow: hidden; }
         .program-card::before { content: ''; position: absolute; top: 0; left: 0; width: 4px; height: 100%; background: #dc2626; transform: scaleY(0); transition: transform 0.3s ease; transform-origin: bottom; }
         .program-card:hover::before { transform: scaleY(1); }
         .program-card:hover { border-color: #dc2626; transform: translateY(-4px); background: #1f1f22; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
@@ -62,12 +63,12 @@
                 <img src="image_7f69fd.png" alt="ACE Elite Logo" class="h-10 sm:h-12 object-contain" onerror="this.style.display='none'">
                 <div>
                     <h1 class="font-header text-3xl sm:text-4xl text-ace-red leading-none m-0 tracking-wide">ACE ELITE</h1>
-                    <p class="text-[10px] sm:text-xs font-bold text-ace-muted uppercase tracking-widest">Player Portal</p>
+                    <p class="text-[10px] sm:text-xs font-bold text-white uppercase tracking-widest">Player Portal</p>
                 </div>
             </div>
             <div class="hidden sm:flex gap-8 text-sm font-bold text-ace-muted uppercase tracking-wider">
-                <a href="#nutrition" class="hover:text-white transition-colors py-2">Nutrition</a>
-                <a href="#training" class="hover:text-white transition-colors py-2">Programs</a>
+                <a href="#nutrition" class="hover:text-white transition-colors py-2">Fuel</a>
+                <a href="#training" class="hover:text-white transition-colors py-2">Program</a>
             </div>
         </div>
     </header>
@@ -78,19 +79,19 @@
         <section class="text-center space-y-6 pt-4 animate-[fadeIn_0.5s_ease-out]">
             <h2 class="font-header text-5xl sm:text-7xl text-white uppercase tracking-wide drop-shadow-lg">Fuel & Fire</h2>
             <p class="text-ace-muted max-w-2xl mx-auto text-base sm:text-lg leading-relaxed">
-                Welcome to the ACE Elite Hub. Before you step on the pitch or into the gym, you need to secure the baseline. Calculate your exact caloric needs below, then launch directly into your assigned training block.
+                Welcome to the ACE Elite Hub. Secure your nutritional baseline below to ensure you are fueled for the week, then launch directly into the Soviet Strength protocol.
             </p>
         </section>
 
         <!-- NUTRITION CALCULATOR SECTION -->
         <section id="nutrition" class="scroll-mt-24">
-            <div class="flex items-center gap-3 mb-8">
+            <div class="flex items-center justify-center sm:justify-start gap-3 mb-8">
                 <span class="text-3xl">🥩</span>
-                <h2 class="font-header text-4xl text-white tracking-wide">PERFORMANCE NUTRITION CALCULATOR</h2>
+                <h2 class="font-header text-4xl text-white tracking-wide">PERFORMANCE NUTRITION</h2>
             </div>
             
             <div class="glass-card p-6 sm:p-10 shadow-2xl">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-12">
+                <div class="grid grid-cols-1 xl:grid-cols-2 gap-10 xl:gap-12">
                     
                     <!-- Form -->
                     <div class="space-y-6">
@@ -149,27 +150,42 @@
                             <p class="text-ace-muted text-sm font-bold uppercase tracking-widest">Awaiting Player Data...</p>
                         </div>
 
-                        <p class="text-sm text-ace-muted font-bold uppercase tracking-widest mb-1 z-0 relative">Daily Target</p>
-                        <div class="text-7xl font-header text-ace-red mb-1 leading-none z-0 relative drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]" id="result-cals">0</div>
-                        <p class="text-xs text-ace-muted mb-6 z-0 relative font-bold tracking-widest">KCAL / DAY</p>
+                        <!-- Daily & Weekly Targets -->
+                        <div class="flex justify-center items-center gap-6 sm:gap-12 mb-6 z-0 relative w-full">
+                            <div class="text-center">
+                                <p class="text-[10px] sm:text-xs text-ace-muted font-bold uppercase tracking-widest mb-1">Daily Target</p>
+                                <div class="text-5xl sm:text-6xl font-header text-ace-red mb-1 leading-none drop-shadow-[0_0_15px_rgba(220,38,38,0.5)]" id="result-cals">0</div>
+                                <p class="text-[10px] text-ace-muted font-bold tracking-widest">KCAL</p>
+                            </div>
+                            
+                            <div class="w-px h-16 bg-ace-border"></div>
+                            
+                            <div class="text-center">
+                                <p class="text-[10px] sm:text-xs text-ace-muted font-bold uppercase tracking-widest mb-1">Weekly Target</p>
+                                <div class="text-5xl sm:text-6xl font-header text-white mb-1 leading-none drop-shadow-[0_0_15px_rgba(255,255,255,0.4)]" id="result-weekly-cals">0</div>
+                                <p class="text-[10px] text-ace-muted font-bold tracking-widest">KCAL</p>
+                            </div>
+                        </div>
+
+                        <p class="text-[10px] text-gray-500 italic z-0 relative mb-6">*Flexibility: Eat slightly more on heavy training days and slightly less on rest days, as long as you hit the weekly total.</p>
 
                         <!-- Chart.js Container -->
-                        <div class="w-full h-48 mb-6 z-0 relative">
+                        <div class="w-full h-40 sm:h-48 mb-6 z-0 relative">
                             <canvas id="macroChart"></canvas>
                         </div>
 
-                        <div class="w-full grid grid-cols-3 gap-4 text-center border-t border-ace-border pt-6 z-0 relative">
+                        <div class="w-full grid grid-cols-3 gap-2 sm:gap-4 text-center border-t border-ace-border pt-6 z-0 relative">
                             <div class="bg-ace-card p-3 rounded-lg border-b-2 border-ace-protein">
                                 <p class="text-[10px] text-ace-muted font-bold uppercase tracking-wider mb-1">Protein</p>
-                                <p class="text-2xl font-bold text-white" id="result-pro">0g</p>
+                                <p class="text-xl sm:text-2xl font-bold text-white" id="result-pro">0g</p>
                             </div>
                             <div class="bg-ace-card p-3 rounded-lg border-b-2 border-ace-carbs">
                                 <p class="text-[10px] text-ace-muted font-bold uppercase tracking-wider mb-1">Carbs</p>
-                                <p class="text-2xl font-bold text-white" id="result-carb">0g</p>
+                                <p class="text-xl sm:text-2xl font-bold text-white" id="result-carb">0g</p>
                             </div>
                             <div class="bg-ace-card p-3 rounded-lg border-b-2 border-ace-fats">
                                 <p class="text-[10px] text-ace-muted font-bold uppercase tracking-wider mb-1">Fats</p>
-                                <p class="text-2xl font-bold text-white" id="result-fat">0g</p>
+                                <p class="text-xl sm:text-2xl font-bold text-white" id="result-fat">0g</p>
                             </div>
                         </div>
                     </div>
@@ -180,59 +196,26 @@
 
         <!-- TRAINING PROGRAMS SECTION -->
         <section id="training" class="scroll-mt-24 pb-16">
-            <div class="flex items-center gap-3 mb-8">
+            <div class="flex items-center justify-center sm:justify-start gap-3 mb-8">
                 <span class="text-3xl">⚡</span>
-                <h2 class="font-header text-4xl text-white tracking-wide">TRAINING PORTALS</h2>
+                <h2 class="font-header text-4xl text-white tracking-wide">TRAINING PORTAL</h2>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                
-                <!-- MAIN ACE APP -->
-                <a href="https://nlcperformance.github.io/ACE-ELITE-APP/" class="program-card group" target="_blank">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <span class="text-[10px] font-bold bg-red-900/30 text-ace-red px-3 py-1 rounded uppercase tracking-wider">Primary System</span>
-                            <h3 class="font-header text-4xl text-white mt-3 leading-none">ACE ELITE APP</h3>
-                        </div>
-                        <div class="h-10 w-10 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center group-hover:bg-ace-red group-hover:border-ace-red group-hover:text-white transition-all shadow-lg">
-                            <span class="text-xl">↗</span>
-                        </div>
+            <!-- SOVIET STRENGTH ONLY -->
+            <a href="https://nlcperformance.github.io/Soviet-Rugby-Strength---White-red/" class="program-card group" target="_blank">
+                <div class="flex justify-between items-start sm:items-center mb-4 flex-col sm:flex-row gap-4">
+                    <div>
+                        <span class="text-[10px] font-bold bg-white text-black px-3 py-1 rounded uppercase tracking-wider">Primary System</span>
+                        <h3 class="font-header text-5xl sm:text-6xl text-ace-red mt-3 leading-none drop-shadow-[0_0_10px_rgba(220,38,38,0.3)]">SOVIET STRENGTH</h3>
                     </div>
-                    <p class="text-sm text-ace-muted leading-relaxed mt-4 border-t border-zinc-800 pt-4">
-                        The core dynamic program. Access the Panther and Lioness protocols, fully periodized and mapped to your season schedule.
-                    </p>
-                </a>
-
-                <!-- SOVIET STRENGTH -->
-                <a href="https://nlcperformance.github.io/Soviet-Rugby-Strength---White-red/" class="program-card group" target="_blank">
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <span class="text-[10px] font-bold bg-zinc-800 text-white px-3 py-1 rounded uppercase tracking-wider">Specialized Block</span>
-                            <h3 class="font-header text-4xl text-white mt-3 leading-none">SOVIET STRENGTH</h3>
-                        </div>
-                        <div class="h-10 w-10 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center group-hover:bg-white group-hover:border-white group-hover:text-black transition-all shadow-lg">
-                            <span class="text-xl">↗</span>
-                        </div>
+                    <div class="h-12 w-12 rounded-full bg-zinc-900 border border-zinc-700 flex items-center justify-center group-hover:bg-white group-hover:border-white group-hover:text-black transition-all shadow-lg flex-shrink-0">
+                        <span class="text-2xl">↗</span>
                     </div>
-                    <p class="text-sm text-ace-muted leading-relaxed mt-4 border-t border-zinc-800 pt-4">
-                        Access the specialized Soviet Rugby Strength and Power protocols. The White/Red edition for brutal force production.
-                    </p>
-                </a>
-
-                <!-- ANALYZER / QUIZ -->
-                <a href="ace_archetype_quiz.html" class="program-card group md:col-span-2 bg-gradient-to-r from-[#18181b] to-[#1e1e24]" target="_blank">
-                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
-                        <div>
-                            <h3 class="font-header text-3xl text-ace-purple mb-1">DNA ANALYZER QUIZ</h3>
-                            <p class="text-sm text-gray-400">Don't know if you are a <span class="text-ace-gold font-bold">Panther</span> or a <span class="text-ace-rose font-bold">Lioness</span>? Take the diagnostic test first.</p>
-                        </div>
-                        <button class="bg-ace-purple/20 text-ace-purple border border-ace-purple/50 px-6 py-3 rounded-lg font-bold text-sm uppercase tracking-widest group-hover:bg-ace-purple group-hover:text-white transition-colors flex-shrink-0">
-                            Start Quiz
-                        </button>
-                    </div>
-                </a>
-
-            </div>
+                </div>
+                <p class="text-base text-ace-muted leading-relaxed mt-4 border-t border-zinc-800 pt-6">
+                    Enter the Soviet Rugby Strength & Power protocols. The brutal White/Red edition designed for maximum force production and athletic dominance.
+                </p>
+            </a>
         </section>
 
     </main>
@@ -277,6 +260,9 @@
             }
 
             targetCalories = Math.round(targetCalories);
+            
+            // Calculate Weekly Calories
+            const weeklyCalories = targetCalories * 7;
 
             // 4. Athletic Macro Split
             // Protein: ~2.2g per kg of bodyweight (High for athletes)
@@ -302,6 +288,8 @@
 
             // Animate numbers for visual effect
             animateValue("result-cals", targetCalories);
+            animateValue("result-weekly-cals", weeklyCalories);
+            
             document.getElementById('result-pro').innerText = protein + 'g';
             document.getElementById('result-fat').innerText = fats + 'g';
             document.getElementById('result-carb').innerText = carbs + 'g';
@@ -315,7 +303,7 @@
             }, 100);
         }
 
-        // Render Chart.js Doughnut
+        // Render Chart.js Doughnut (Soviet Colors: Red, White, Dark Grey)
         function renderChart(proCals, carbCals, fatCals) {
             const ctx = document.getElementById('macroChart').getContext('2d');
             
@@ -333,9 +321,9 @@
                     datasets: [{
                         data: [proCals, carbCals, fatCals],
                         backgroundColor: [
-                            '#dc2626', // Red (Protein)
-                            '#f59e0b', // Gold (Carbs)
-                            '#3b82f6'  // Blue (Fats)
+                            '#dc2626', // Brutal Red (Protein)
+                            '#ffffff', // Pure White (Carbs)
+                            '#52525b'  // Iron Grey (Fats)
                         ],
                         borderWidth: 2,
                         borderColor: '#0a0a0c', // Match background
