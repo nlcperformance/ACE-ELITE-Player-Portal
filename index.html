@@ -59,11 +59,10 @@
 </head>
 <body class="antialiased min-h-screen flex flex-col">
 
-    <!-- HEADER (Matched to App Screenshot) -->
+    <!-- HEADER -->
     <header class="bg-ace-bg border-b border-ace-border sticky top-0 z-50">
         <div class="max-w-4xl mx-auto px-4 py-4 flex justify-between items-center">
             <div class="flex items-center gap-3">
-                <!-- Branding Logo -->
                 <img src="image_7f69fd.png" alt="Logo" class="h-8 object-contain" onerror="this.style.display='none'">
                 <h1 class="font-header text-3xl text-white leading-none m-0 tracking-wide mt-1">NEWMAN STRONG <span class="text-ace-red text-xl leading-none">●</span></h1>
             </div>
@@ -81,14 +80,15 @@
             <p class="text-ace-red text-sm font-bold tracking-widest uppercase">Phase 1 Preparation</p>
             <h2 class="font-header text-5xl sm:text-6xl text-white uppercase tracking-wide">FUEL & FIRE</h2>
             <p class="text-ace-muted max-w-xl mx-auto text-sm leading-relaxed">
-                Secure your nutritional baseline below to ensure you are fueled for the preseason, then launch directly into the Newman Strong protocol.
+                Lecture theatre talk about the foundations of performance—everything tried and tested over the years that has an immediate impact in this phase of development (and beyond).
+                <br><br><span class="text-white font-bold">Players and Parents welcome.</span>
             </p>
         </section>
 
-        <!-- NUTRITION CALCULATOR SECTION -->
+        <!-- NUTRITION & READINESS CALCULATOR SECTION -->
         <section id="nutrition" class="scroll-mt-24">
             <div class="mb-6">
-                <h2 class="font-header text-3xl text-white tracking-wide">NUTRITION CALCULATOR</h2>
+                <h2 class="font-header text-3xl text-white tracking-wide">READINESS CALCULATOR</h2>
                 <p class="text-xs text-ace-muted uppercase tracking-widest">Establish The Baseline</p>
             </div>
             
@@ -142,54 +142,75 @@
                             </select>
                         </div>
 
-                        <button onclick="calculateMacros()" class="btn-primary mt-2">CALCULATE FUEL</button>
+                        <button onclick="calculateMacros()" class="btn-primary mt-2">GENERATE PROTOCOLS</button>
                     </div>
 
                     <!-- Results Panel -->
-                    <div id="results-panel" class="bg-black border border-ace-border rounded-lg p-6 flex flex-col justify-center items-center text-center transition-opacity duration-300 opacity-50 relative">
+                    <div id="results-panel" class="bg-black border border-ace-border rounded-lg p-4 sm:p-6 flex flex-col justify-start items-center text-center transition-opacity duration-300 opacity-50 relative min-h-[400px]">
                         
-                        <div id="results-placeholder" class="absolute inset-0 flex items-center justify-center bg-black z-10">
+                        <div id="results-placeholder" class="absolute inset-0 flex items-center justify-center bg-black z-10 rounded-lg">
                             <p class="text-ace-muted text-xs font-bold uppercase tracking-widest">Awaiting Data...</p>
                         </div>
 
-                        <!-- Daily & Weekly Targets -->
-                        <div class="flex justify-between items-center w-full mb-6 z-0 relative px-4">
+                        <!-- 3 Core Targets: Daily Cals, Weekly Cals, Hydration -->
+                        <div class="flex justify-between items-center w-full mb-4 z-0 relative">
                             <div class="text-center flex-1">
-                                <p class="text-[10px] text-ace-muted font-bold uppercase tracking-widest mb-1">Daily Goal</p>
-                                <div class="text-4xl font-header text-ace-red leading-none" id="result-cals">0</div>
-                                <p class="text-[9px] text-ace-muted tracking-widest mt-1">KCAL</p>
+                                <p class="text-[9px] text-ace-muted font-bold uppercase tracking-widest mb-1">Daily Target</p>
+                                <div class="text-3xl sm:text-4xl font-header text-ace-red leading-none" id="result-cals">0</div>
+                                <p class="text-[8px] text-ace-muted tracking-widest mt-1">KCAL</p>
                             </div>
                             
-                            <div class="w-px h-10 bg-ace-border"></div>
+                            <div class="w-px h-8 bg-ace-border"></div>
                             
                             <div class="text-center flex-1">
-                                <p class="text-[10px] text-ace-muted font-bold uppercase tracking-widest mb-1">Weekly Goal</p>
-                                <div class="text-4xl font-header text-white leading-none" id="result-weekly-cals">0</div>
-                                <p class="text-[9px] text-ace-muted tracking-widest mt-1">KCAL</p>
+                                <p class="text-[9px] text-ace-muted font-bold uppercase tracking-widest mb-1">Weekly Target</p>
+                                <div class="text-3xl sm:text-4xl font-header text-white leading-none" id="result-weekly-cals">0</div>
+                                <p class="text-[8px] text-ace-muted tracking-widest mt-1">KCAL</p>
+                            </div>
+
+                            <div class="w-px h-8 bg-ace-border"></div>
+
+                            <div class="text-center flex-1">
+                                <p class="text-[9px] text-ace-muted font-bold uppercase tracking-widest mb-1">Hydration</p>
+                                <div class="text-3xl sm:text-4xl font-header text-[#3b82f6] leading-none" id="result-water">0</div>
+                                <p class="text-[8px] text-ace-muted tracking-widest mt-1">LITERS / DAY</p>
                             </div>
                         </div>
 
                         <!-- Chart.js Container -->
-                        <div class="w-full h-32 mb-6 z-0 relative">
+                        <div class="w-full h-28 mb-4 z-0 relative">
                             <canvas id="macroChart"></canvas>
                         </div>
 
-                        <div class="w-full grid grid-cols-3 gap-2 text-center border-t border-ace-border pt-4 z-0 relative">
+                        <div class="w-full grid grid-cols-3 gap-2 text-center border-t border-ace-border pt-3 mb-4 z-0 relative">
                             <div>
-                                <p class="text-[10px] text-ace-muted font-bold uppercase tracking-wider mb-0.5">Protein</p>
-                                <p class="text-lg font-bold text-white" id="result-pro">0g</p>
+                                <p class="text-[9px] text-ace-muted font-bold uppercase tracking-wider mb-0.5">Protein</p>
+                                <p class="text-sm font-bold text-white" id="result-pro">0g</p>
                             </div>
                             <div>
-                                <p class="text-[10px] text-ace-muted font-bold uppercase tracking-wider mb-0.5">Carbs</p>
-                                <p class="text-lg font-bold text-white" id="result-carb">0g</p>
+                                <p class="text-[9px] text-ace-muted font-bold uppercase tracking-wider mb-0.5">Carbs</p>
+                                <p class="text-sm font-bold text-white" id="result-carb">0g</p>
                             </div>
                             <div>
-                                <p class="text-[10px] text-ace-muted font-bold uppercase tracking-wider mb-0.5">Fats</p>
-                                <p class="text-lg font-bold text-white" id="result-fat">0g</p>
+                                <p class="text-[9px] text-ace-muted font-bold uppercase tracking-wider mb-0.5">Fats</p>
+                                <p class="text-sm font-bold text-white" id="result-fat">0g</p>
                             </div>
                         </div>
-                    </div>
 
+                        <!-- Readiness Prescription Box (Sleep & Stress) -->
+                        <div id="readiness-box" class="w-full bg-[#111111] border border-[#222222] rounded-md p-3 text-left hidden">
+                            <p class="text-[10px] text-ace-red font-bold uppercase tracking-widest border-b border-[#222222] pb-1 mb-2">Readiness Prescription</p>
+                            <div class="mb-2">
+                                <span class="text-[9px] text-ace-muted font-bold uppercase tracking-widest block">Pillar 1: Sleep</span>
+                                <span class="text-xs text-white" id="result-sleep">--</span>
+                            </div>
+                            <div>
+                                <span class="text-[9px] text-ace-muted font-bold uppercase tracking-widest block">Pillar 4: Recovery & Stress</span>
+                                <span class="text-xs text-white leading-tight" id="result-recovery">--</span>
+                            </div>
+                        </div>
+
+                    </div>
                 </div>
             </div>
         </section>
@@ -287,39 +308,60 @@
                 return;
             }
 
-            // 1. Mifflin-St Jeor Equation for BMR
+            // 1. Calories (Mifflin-St Jeor)
             let bmr = (10 * weight) + (6.25 * height) - (5 * age);
             bmr += (gender === 'male') ? 5 : -161;
-
-            // 2. TDEE (Total Daily Energy Expenditure)
             let tdee = bmr * activity;
-
-            // 3. Goal Adjustment
             let targetCalories = tdee;
-            if (goal === 'cut') {
-                targetCalories -= 500; // Caloric Deficit
-            } else if (goal === 'bulk') {
-                targetCalories += 400; // Caloric Surplus (Lean Bulk)
-            }
+            
+            if (goal === 'cut') targetCalories -= 500;
+            else if (goal === 'bulk') targetCalories += 400;
 
             targetCalories = Math.round(targetCalories);
-            
-            // Calculate Weekly Calories
             const weeklyCalories = targetCalories * 7;
 
-            // 4. Athletic Macro Split
-            // Protein: ~2.2g per kg of bodyweight
+            // 2. Macros
             const protein = Math.round(weight * 2.2); 
-            // Fats: ~1g per kg of bodyweight
             const fats = Math.round(weight * 1.0); 
-            
-            // Carbs: The remainder of the calories
             const proteinCals = protein * 4;
             const fatCals = fats * 9;
             const remainingCals = targetCalories - proteinCals - fatCals;
             const carbs = Math.max(0, Math.round(remainingCals / 4));
 
-            // 5. Update UI
+            // 3. Hydration (Pillar 3)
+            // Base: 35ml per kg. Plus adjustments for training load.
+            let extraWater = 0;
+            if (activity == 1.375) extraWater = 0.5;
+            else if (activity == 1.55) extraWater = 1.0;
+            else if (activity == 1.725) extraWater = 1.5;
+            else if (activity == 1.9) extraWater = 2.0;
+
+            let hydration = ((weight * 35) / 1000) + extraWater;
+            hydration = hydration.toFixed(1);
+
+            // 4. Sleep Prescription (Pillar 1)
+            let sleepRec = "";
+            if (age < 18 && activity >= 1.55) {
+                sleepRec = "9-10 Hours (Critical for growth phase & CNS repair)";
+            } else if (age < 18) {
+                sleepRec = "8-9 Hours minimum (Growth phase)";
+            } else if (age >= 18 && activity >= 1.55) {
+                sleepRec = "8-9 Hours (Required for intense training loads)";
+            } else {
+                sleepRec = "8 Hours minimum";
+            }
+
+            // 5. Recovery Prescription (Pillar 4)
+            let recoveryRec = "";
+            if (activity < 1.5) {
+                recoveryRec = "Active recovery (walking, light cycling) & mobility flows to prep tissues for the season.";
+            } else if (activity < 1.7) {
+                recoveryRec = "100-Point Recovery Game: Prioritize post-training protein, 15m stretching, and hydration.";
+            } else {
+                recoveryRec = "Max CNS Protection: Strict 100-Point Recovery required. Aggressive fueling & down-regulation non-negotiable.";
+            }
+
+            // 6. Update UI
             document.getElementById('results-placeholder').style.opacity = '0';
             setTimeout(() => {
                 document.getElementById('results-placeholder').style.display = 'none';
@@ -329,13 +371,20 @@
             panel.classList.remove('opacity-50');
             panel.classList.add('opacity-100');
 
-            // Animate numbers for visual effect
+            // Text Updates
             animateValue("result-cals", targetCalories);
             animateValue("result-weekly-cals", weeklyCalories);
+            document.getElementById('result-water').innerText = hydration + "L";
             
             document.getElementById('result-pro').innerText = protein + 'g';
             document.getElementById('result-fat').innerText = fats + 'g';
             document.getElementById('result-carb').innerText = carbs + 'g';
+
+            document.getElementById('result-sleep').innerText = sleepRec;
+            document.getElementById('result-recovery').innerText = recoveryRec;
+            
+            // Show the Readiness Box
+            document.getElementById('readiness-box').classList.remove('hidden');
             
             // Render Chart
             renderChart(proteinCals, remainingCals, fatCals);
@@ -348,7 +397,7 @@
             }
         }
 
-        // Render Chart.js Doughnut (Newman Strong Colors: Red, White, Dark Grey)
+        // Render Chart.js Doughnut
         function renderChart(proCals, carbCals, fatCals) {
             const ctx = document.getElementById('macroChart').getContext('2d');
             
@@ -386,7 +435,7 @@
                                 padding: 15,
                                 usePointStyle: true,
                                 pointStyle: 'rect',
-                                font: { weight: 'bold', size: 11 }
+                                font: { weight: 'bold', size: 10 }
                             }
                         },
                         tooltip: {
@@ -395,12 +444,12 @@
                                     const value = context.raw;
                                     const total = context.dataset.data.reduce((a, b) => a + b, 0);
                                     const percentage = Math.round((value / total) * 100) + '%';
-                                    return ` ${context.label}: ${percentage} (${Math.round(value/ (context.label==='Fats'?9:4))}g)`;
+                                    return ` ${context.label}: ${percentage}`;
                                 }
                             },
                             backgroundColor: '#111111',
-                            titleFont: { size: 13, family: "'Inter', sans-serif" },
-                            bodyFont: { size: 12 },
+                            titleFont: { size: 12, family: "'Inter', sans-serif" },
+                            bodyFont: { size: 11 },
                             padding: 10,
                             cornerRadius: 4,
                             borderColor: '#333333',
@@ -424,7 +473,6 @@
             const step = (timestamp) => {
                 if (!startTimestamp) startTimestamp = timestamp;
                 const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                // Easing function for smoother stop
                 const easeOut = 1 - Math.pow(1 - progress, 3);
                 const currentVal = Math.floor(easeOut * (end - start) + start);
                 obj.innerHTML = currentVal.toLocaleString();
