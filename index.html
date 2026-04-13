@@ -234,6 +234,9 @@
                             </div>
                         </div>
 
+                        <p class="text-[10px] text-[#3b82f6] font-bold italic z-0 relative mb-1">*Add 500ml of water + electrolytes for every hour of intense sweating.</p>
+                        <p class="text-[10px] text-gray-500 italic z-0 relative mb-4">*Flexibility: Eat slightly more on heavy training days and slightly less on rest days, as long as you hit the weekly total.</p>
+
                         <!-- Chart.js Container -->
                         <div class="w-full h-28 mb-4 z-0 relative">
                             <canvas id="macroChart"></canvas>
@@ -356,20 +359,16 @@
             const overlay = document.getElementById('recovery-overlay');
             
             if (panel.classList.contains('translate-x-full')) {
-                // Open panel
                 panel.classList.remove('translate-x-full');
                 overlay.classList.remove('hidden');
-                // Small delay to allow display:block to render before opacity transition
                 setTimeout(() => {
                     overlay.classList.remove('opacity-0');
                     overlay.classList.add('opacity-100');
                 }, 10);
             } else {
-                // Close panel
                 panel.classList.add('translate-x-full');
                 overlay.classList.remove('opacity-100');
                 overlay.classList.add('opacity-0');
-                // Wait for transition to finish before hiding
                 setTimeout(() => {
                     overlay.classList.add('hidden');
                 }, 300);
@@ -397,29 +396,52 @@
             let tdee = bmr * activity;
             let targetCalories = tdee;
             
-            if (goal === 'cut') targetCalories -= 500;
-            else if (goal === 'bulk') targetCalories += 400;
+            // RED-S Protection (Females on a cut get a safer, smaller deficit)
+            if (goal === 'cut') {
+                if (gender === 'female') {
+                    targetCalories -= 300; 
+                } else {
+                    targetCalories -= 500;
+                }
+            } else if (goal === 'bulk') {
+                targetCalories += 400;
+            }
+
+            // Growth & Puberty Buffer (Adding 150kcal for developing athletes)
+            if (age < 18) {
+                targetCalories += 150;
+            }
 
             targetCalories = Math.round(targetCalories);
             const weeklyCalories = targetCalories * 7;
 
             // 2. Macros
             const protein = Math.round(weight * 2.2); 
-            const fats = Math.round(weight * 1.0); 
+            let fats = Math.round(weight * 1.0); 
             const proteinCals = protein * 4;
-            const fatCals = fats * 9;
-            const remainingCals = targetCalories - proteinCals - fatCals;
-            const carbs = Math.max(0, Math.round(remainingCals / 4));
+            let fatCals = fats * 9;
+            let remainingCals = targetCalories - proteinCals - fatCals;
+            let carbs = Math.max(0, Math.round(remainingCals / 4));
 
-            // 3. Hydration (Pillar 3)
-            // Base: 35ml per kg. Plus adjustments for training load.
+            // Carb Floor Protection (Glycolytic Sport Requirement: Min 3g/kg)
+            const minCarbs = Math.round(weight * 3.0);
+            if (carbs < minCarbs) {
+                carbs = minCarbs;
+                // Recalculate fats if we had to bump carbs up, but don't drop below 0.8g/kg for hormone health
+                const neededCarbCals = carbs * 4;
+                fatCals = targetCalories - proteinCals - neededCarbCals;
+                fats = Math.max(Math.round(weight * 0.8), Math.round(fatCals / 9));
+            }
+
+            // 3. Hydration (Pillar 3) - Adjusted for behavioral compliance
+            // Base: 30ml per kg. Plus max 1L adjustment for training load.
             let extraWater = 0;
-            if (activity == 1.375) extraWater = 0.5;
-            else if (activity == 1.55) extraWater = 1.0;
-            else if (activity == 1.725) extraWater = 1.5;
-            else if (activity == 1.9) extraWater = 2.0;
+            if (activity == 1.375) extraWater = 0.25;
+            else if (activity == 1.55) extraWater = 0.5;
+            else if (activity == 1.725) extraWater = 0.75;
+            else if (activity == 1.9) extraWater = 1.0;
 
-            let hydration = ((weight * 35) / 1000) + extraWater;
+            let hydration = ((weight * 30) / 1000) + extraWater;
             hydration = hydration.toFixed(1);
 
             // 4. Sleep Prescription (Pillar 1)
@@ -470,7 +492,7 @@
             document.getElementById('readiness-box').classList.remove('hidden');
             
             // Render Chart
-            renderChart(proteinCals, remainingCals, fatCals);
+            renderChart(proteinCals, carbs * 4, fats * 9);
 
             // Smooth scroll to results on mobile
             if(window.innerWidth < 768) {
